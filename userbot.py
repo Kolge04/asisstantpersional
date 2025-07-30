@@ -34,7 +34,7 @@ buttons=[
             ]
 
 
-@client.on(events.NewMessage(pattern='[.!/]as'))
+@client.on(events.NewMessage(pattern='[.!/]music'))
 async def send_random_song(event):
     try:
         channel_entity = await client.get_entity(music_channel)
@@ -90,7 +90,7 @@ async def send_random_song(target, reply_event=None):
 @client.on(events.NewMessage(from_users="PersionalMultiBot"))  # və ya istifadəçi ID
 async def handle_bot_request(event):
     try:
-        if event.raw_text and event.raw_text.startswith("[./]as"):
+        if event.raw_text and event.raw_text.startswith("[./]music"):
             parts = event.raw_text.split()
             if len(parts) == 2:
                 chat_id = int(parts[1])
@@ -101,6 +101,6 @@ async def handle_bot_request(event):
  
         
 
-print("İslədi ♻️")
+
 client.start()
 client.run_until_disconnected()
