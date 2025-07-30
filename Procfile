@@ -1,1 +1,3 @@
-worker: python Asisstant
+worker: python userbot.py
+worker: python bot.py
+
