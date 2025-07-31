@@ -6,6 +6,15 @@ from telethon.tl.functions.messages import GetHistoryRequest
 from telethon.sessions import StringSession
 from telethon.errors import ChatWriteForbiddenError
 from telethon.tl.custom import Button  # Əlavə et
+from telethon import TelegramClient
+from telethon.sessions import StringSession
+from telethon.tl.functions.phone import CreateGroupCallRequest, DiscardGroupCallRequest
+from telethon.tl.functions.channels import GetFullChannelRequest
+from telethon.tl.types import InputPeerChannel
+import asyncio
+import os
+import random  # Burada əlavə et
+
 
 from telethon import Button
 
@@ -100,6 +109,57 @@ async def handle_bot_request(event):
         await event.reply(f"Userbot xətası: {e}")
  
         
+
+async def control_vc():
+    await client.start()
+    print("✅ Userbot işləyir və dinləyir...")
+
+    while True:
+        if os.path.exists("command.txt"):
+            with open("command.txt", "r") as f:
+                content = f.read().strip()
+            os.remove("command.txt")
+
+            if "|" in content:
+                action, chat_id = content.split("|")
+                chat_id = int(chat_id)
+
+                try:
+                    full_chat = await client(GetFullChannelRequest(chat_id))
+                    chat = full_chat.chats[0]
+                    call = full_chat.full_chat.call
+
+                    if action == "start":
+                        await client(CreateGroupCallRequest(
+                            peer=InputPeerChannel(chat.id, chat.access_hash),
+                            random_id=random.getrandbits(31)  # Burada düzəliş
+                        ))
+                        print("🔊 Səsli söhbət başlatıldı.")
+                    
+                    elif action == "stop":
+                        if call:
+                            await client(DiscardGroupCallRequest(call=call))
+                            print("🔇 Səsli söhbət dayandırıldı.")
+                        else:
+                            print("❗ Səsli söhbət aktiv deyil, dayandırmaq mümkün deyil.")
+
+                except Exception as e:
+                    print(f"❌ Xəta: {e}")
+
+        await asyncio.sleep(5)
+
+asyncio.run(control_vc())
+
+
+
+
+
+
+
+
+
+
+
 
 
 client.start()
