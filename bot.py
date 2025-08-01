@@ -25,7 +25,7 @@ bot_token = "7756181021:AAH8mPBjMb0SRB9LUAdZDdJxt5ZZaY6Oa4k"
 userbot_username = "PersionalMusic"  # istifadəçi adı varsa @siz yazmadan
 # userbot_id = 123456789
 
-ASSISTANT_ID = 7926847490  # Asistant userbotun ID-si
+ASSISTANT_ID = 7926847490 # Asistant userbotun ID-si
 ASİSSTANT_TAG = "@PersionalMusic"  # Asisstantın ve ya userbotun Tağ adı
 
 
@@ -91,7 +91,7 @@ async def stop_vc(event):
     chat = await event.get_chat()
 
     try:
-        participant = await bot(GetParticipantRequest(chat, ASSISTANT_ID))
+        participant = await bot(GetParticipantRequest(chat, 7926847490))
         part = participant.participant
 
         # Admin olub-olmadığını yoxlayırıq
