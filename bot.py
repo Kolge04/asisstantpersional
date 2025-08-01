@@ -25,7 +25,7 @@ bot_token = "7756181021:AAH8mPBjMb0SRB9LUAdZDdJxt5ZZaY6Oa4k"
 userbot_username = "PersionalMusic"  # istifadəçi adı varsa @siz yazmadan
 # userbot_id = 123456789
 
-ASSISTANT_ID = 5871660730  # Asistant userbotun ID-si
+ASSISTANT_ID = 7926847490  # Asistant userbotun ID-si
 ASİSSTANT_TAG = "@PersionalMusic"  # Asisstantın ve ya userbotun Tağ adı
 
 
